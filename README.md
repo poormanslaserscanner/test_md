@@ -55,6 +55,7 @@ In contrast to the main CSV survey CSV feles do not have a header. The following
 1. Distance reading in meters.
 1. Azimuth in degrees: Norts is zero, east is 90 degrees.
 1. Elevation in degrees between -90 and +90.
+
 It is always assumed that there is a station with identifier ```0``` and cartesian coordinates ```[0,0,0]```. The shots whith both From and To station identifiers compose the network of the stations. This network cannot be disconnected and so the cartesian coordinates of all the stations can be derived from the shots and from the location of station ```0```. There can be multiple shots with the same from and two stations. In that case we will take the average of the readings. 
 
 ## Contact
