@@ -10,14 +10,16 @@
 - Hardware requirements: 8GB Ram, but 16 or more is recommended for large surveys
 - git
 
-### 3. Obtain the packages using git:
+### Obtain the packages using git:
 Cd to a directory in which the PMLS system will be installed. A new directory called "pmls4matlab" will be created in which pmls4matlab will be set up.
 
 * download pmls4matlab:
 
 > git clone https://github.com/poormanslaserscanner/pmls4matlab.git
 > cd pmls4matlab
-3rd party libraries are incorporated as submodules, you can obtain:
+
+* 3rd party libraries are incorporated as submodules, you can obtain:
+
 > git submodule update --init
 > cd ..
 
