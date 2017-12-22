@@ -58,7 +58,45 @@ In contrast to the main CSV survey CSV feles do not have a header. The following
 
 It is always assumed that there is a station with identifier ```0``` and cartesian coordinates ```[0,0,0]```. The shots whith both ```From station``` and ```To station``` identifiers compose the network of the stations. This network cannot be disconnected and so the cartesian coordinates of all the stations can be derived from the shots and from the location of station ```0```. There can be multiple shots with the same from and to stations. In that case we will take the average of the readings. The network may also contain loops, in which case we shall optimally distribute the errors on the measurements.
 
-A shot without a ```To station``` is called a splay shot and is assumed to be a point on the cave's wall. Stations are not necesarily on the wall, shots can also be made from a tripod. If a station is on the wall, it is recommended to take a so called ```zeroshot```. A ```zeroshot``` is a shot without a distance but with normal direction to the wall. ```zeroshots``` have identical ```From station``` and ```To station``` identifiers in the CSV.
+A shot without a ```To station``` is called a splay shot and is assumed to be a point on the cave's wall. Stations are not necesarily on the wall, shots can also be made from a tripod. If a station is on the wall, it is recommended to take a so called ```zeroshot```. A ```zeroshot``` is a shot without a distance but with normal direction to the wall. ```zeroshots``` have identical ```From station``` and ```To station``` identifiers in the CSV. Only stations with zeroshots will be assumed to be on the wall.
+### Reading in the input
+```matlab
+H = plgetinput(csvname,n);
+```
+Will read the survey data from the ```csvname``` main CSV file and the refered survey CSV files. The stations with fewer splay shots than ```n``` will be ignored (they will be used in determining the location of the stations, but they will not be used for surface reconstruction). A typical value of ```n``` is between 5 and 10. 
+```matlab
+H = plgetinput(csvname,n,poligonname);
+```
+`poligonname` is the name of a .cave file. This file format is used by the poligon software, which is the most widely used cave surveying program in Hungary. In that format the function will first read in the stations defined in the `poligonname` file.
+The output ```H``` is a special struct that will be used in the further steps. We will call this internal data structure ```plstruct```
+### Reconstruct surface
+```matlab
+M = pmlsrecon(H, vox1, vox2, ...);
+```
+Outlier measurements will be automatically removed and the surface reconstruction will be done based on the remaining shots. The reconstruction is performed in several steps starting with a coarser step followed with steps trying to recover finer details. The number of the ```vox1, vox2,...``` parameters determines the number of steps and the values give the level of detail in voxel size for the corresponding steps. Voxel sizes should be given in centimeters. In the testdata for Speizi and Ferenc 
+```matlab
+M = pmlsrecon(H, 4, 3);
+```
+For Legeny:
+```matlab
+M = pmlsrecon(H, 6, 5);
+```
+is a good choice. Note that run times will be long. It can take several hours. Temporary files will be created in the subdirectory ```pltmp```. The output M will be a plstruct with the resulting mesh and the input data without the outliers.
+### Save and load plstruct
+```matlab
+plsave(filename, S);
+```
+Saves plstruct `S` to `filename`. `filename` will be a `.mat` file.
+```matlab
+plload(filename);
+```
+Loads plstruct from `filename` to the current matlab workspace with the name it was saved.
+### Export the result
+The resulted mesh can be exported into Stanford Polygon format.
+```matlab
+plexport(filename, M);
+```
+The content of the plstruct `M` will be exported. The mesh will be saved in `filename.ply`. The input survey will exported to `filename.dxf`. 
 
 ## Contact
 PMLS is a group endeavor of a few cavers from Hungary. You can [contact us](mailto:pmls-hu@cave3d.org) if you have questions or comments.
