@@ -3,11 +3,27 @@
 
 **pmls4matlab** is the proof of concept implementation of the applied surface reconstruction technique in our novel 3D cave surveying method: [Poor Man's Laserscanner (PMLS): a simple method of 3D cave surveying](http://cave3d.org/cmssimple). Our method is based on sparse measurements performed with Beat Heeb's  [DistoX](https://paperless.bheeb.ch) or similar laser distance meter equipped with compass and inclinometer. We can capture very few samples with the Disto compared to point clouds resulting from Terrestrial Laser Scanners (TLS) or [GeoSlam’s ZEB1/ZEB REVO](https://geoslam.com/) handheld laser scanners. In addition, the distribution of the sampled points can be extremely uneven, while caves usually have layouts with lots of features at all scales. To overcome these difficulties a robust and reliable surface reconstruction algorithm had to be developed. The proposed sofware, **pmls4matlab** interpolates the measured points with a watertight surface, which is free of self-intersections. We have found that even complicated geometric layouts can be recovered with good detail from as few as 50 to 150 splay shots per station. More technical details can be found in our [paper](https://poormanslaserscanner.github.io/pmls4blender/paper.pdf). 
 
-## Install
+## Installation
 ### Prerequisites
 - A 64-bit version of Microsoft Windows (We provide precompiled binaries of the used 3rd party software only for windows, but these could also be compiled on Linux.)
 - Matlab version 2015b or later
 - Hardware requirements: 8GB Ram, but 16 or more is recommended for large surveys
+- git
+
+### 3. Obtain the packages using git:
+Cd to a directory in which the PMLS system will be installed. A new directory called "pmls4matlab" will be created in which pmls4matlab will be set up.
+
+* download pmls4matlab:
+
+> git clone https://github.com/poormanslaserscanner/pmls4matlab.git
+> cd pmls4matlab
+3rd party libraries are incorporated as submodules, you can obtain:
+> git submodule update --init
+> cd ..
+
+Alternatively these may be downloaded as zip files from GitHub (from user https://github.com/poormanslaserscanner/ links are given from pmls4matlab repository).
+
+### Setup
 
 
 ## Contact
