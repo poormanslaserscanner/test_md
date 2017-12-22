@@ -34,6 +34,20 @@ cd ..
 cd(getenv('PMLS_INSTALL_DIR'))
 setup
 ```
+## Usage
+### Preparing input data
+PMLS uses an input file structure based on CSV files. The input structure is to have a main CSV file that references the CSV files of different surveys called survey CSV files. For each survey CSV file a unique survey Id is defined and magnetic declination may be set. The format of these files follow the table structure of the TopoDroid sqlite database (namely the columns of the "shots" table). In the CSV files the '|' character has to be used as delimeter.
+#### The main CSV file
+The first line is assumed to be a header and will be skipped. The main CSV file has the following fields:
+1. Id: Unique identifier of the survey. If the id is `xyz` then the name of the corresponding survey CSV file is `xyz.csv` 
+1. Name: Helps the user to identify the survey
+1. Day: The date of the survey
+1. Team: Name of the surveying team
+1. Comment: Anything can be written here
+1. Declination: Magnetic declination. Azimuth readings will be corrected with this value.
+1. Init_station: Always zero.
+#### The survey CSV files
+
 
 ## Contact
 PMLS is a group endeavor of a few cavers from Hungary. You can [contact us](mailto:pmls-hu@cave3d.org) if you have questions or comments.
