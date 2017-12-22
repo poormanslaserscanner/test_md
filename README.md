@@ -1,6 +1,14 @@
 ﻿# pmls4matlab - Surface reconstruction for 3D cave surveying
 ![](teaser.gif)
-**pmls4matlab** is the proof of concept implementation of the applied surface reconstruction technique in [Poor Man's Laserscanner (PMLS): a simple method of 3D cave surveying](http://cave3d.org/cmssimple). Our method is based on sparse measurements performed with Beat Heeb's  [DistoX](https://paperless.bheeb.ch) or similar laser distance meter equipped with compass and inclinometer. We can capture very few samples compared to point clouds resulting from Terrestrial Laser Scanners (TLS) or [GeoSlam’s ZEB1/ZEB REVO](https://geoslam.com/) handheld laser scanners. In addition, the distribution of the sampled points can be extremely uneven. Utilizing a robust and reliable surface reconstruction algorithm, our software interpolates the measured points with a watertight surface, which is free of self-intersections. We have found that even complicated geometric layouts can be recovered with good detail from as few as 50 to 150 splay shots per station. More technical details can be found in our [paper](https://poormanslaserscanner.github.io/pmls4blender/paper.pdf). 
+
+**pmls4matlab** is the proof of concept implementation of the applied surface reconstruction technique in our novel 3D cave surveying method: [Poor Man's Laserscanner (PMLS): a simple method of 3D cave surveying](http://cave3d.org/cmssimple). Our method is based on sparse measurements performed with Beat Heeb's  [DistoX](https://paperless.bheeb.ch) or similar laser distance meter equipped with compass and inclinometer. We can capture very few samples with the Disto compared to point clouds resulting from Terrestrial Laser Scanners (TLS) or [GeoSlam’s ZEB1/ZEB REVO](https://geoslam.com/) handheld laser scanners. In addition, the distribution of the sampled points can be extremely uneven, while caves usually have layouts with lots of features at all scales. To overcome these difficulties a robust and reliable surface reconstruction algorithm had to be developed. The proposed sofware, **pmls4matlab** interpolates the measured points with a watertight surface, which is free of self-intersections. We have found that even complicated geometric layouts can be recovered with good detail from as few as 50 to 150 splay shots per station. More technical details can be found in our [paper](https://poormanslaserscanner.github.io/pmls4blender/paper.pdf). 
+
+## Install
+### Prerequisites
+- A 64-bit version of Microsoft Windows (We provide precompiled binaries of the used 3rd party software only for windows, but these could also be compiled on Linux.)
+- Matlab version 2015b or later
+- Hardware requirements: 8GB Ram, but 16 or more is recommended for large surveys
+
 
 ## Contact
 PMLS is a group endeavor of a few cavers from Hungary. You can [contact us](mailto:pmls-hu@cave3d.org) if you have questions or comments.
