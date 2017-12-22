@@ -8,7 +8,6 @@
 - A 64-bit version of Microsoft Windows (We provide precompiled binaries of the used 3rd party software only for windows, but these could also be compiled on Linux.)
 - Matlab version 2015b or later
 - Hardware requirements: 8GB Ram, but 16 or more is recommended for large surveys
-- git
 
 ### Obtain the packages using git:
 Change to a directory in which the PMLS system will be installed. A new directory called "pmls4matlab" will be created in which pmls4matlab will be set up.
@@ -23,17 +22,19 @@ cd pmls4matlab
 git submodule update --init
 cd ..
 ```
-3. Download precompiled binaries from releases.
-4. Copy the bin directory into pmls4matlab
+3. Alternatively you can also download these files from releases
+4. Download precompiled binaries from releases
+5. Copy the bin directory into pmls4matlab
 
 ### Setup
 1. Set PMLS_INSTALL_DIR environmental variable to the pmls installation folder, eg.: "d:\pmls4matlab"
 1. Start Matlab
 1. Setup the Matlab path by typing in the Matlab command line: 
-```
+```matlab
 cd(getenv('PMLS_INSTALL_DIR'))
 setup
 ```
+
 ## Contact
 PMLS is a group endeavor of a few cavers from Hungary. You can [contact us](mailto:pmls-hu@cave3d.org) if you have questions or comments.
 If you're using our work, please drop us a note to justify spending time maintaining this.
