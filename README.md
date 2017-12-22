@@ -56,7 +56,9 @@ In contrast to the main CSV survey CSV feles do not have a header. The following
 1. Azimuth in degrees: Norts is zero, east is 90 degrees.
 1. Elevation in degrees between -90 and +90.
 
-It is always assumed that there is a station with identifier ```0``` and cartesian coordinates ```[0,0,0]```. The shots whith both From and To station identifiers compose the network of the stations. This network cannot be disconnected and so the cartesian coordinates of all the stations can be derived from the shots and from the location of station ```0```. There can be multiple shots with the same from and two stations. In that case we will take the average of the readings. 
+It is always assumed that there is a station with identifier ```0``` and cartesian coordinates ```[0,0,0]```. The shots whith both ```From station``` and ```To station``` identifiers compose the network of the stations. This network cannot be disconnected and so the cartesian coordinates of all the stations can be derived from the shots and from the location of station ```0```. There can be multiple shots with the same from and to stations. In that case we will take the average of the readings. The network may also contain loops, in which case we shall optimally distribute the errors on the measurements.
+
+A shot without a ```To station``` is called a splay shot and is assumed to be a point on the cave's wall. Stations are not necesarily on the wall, shots can also be made from a tripod. If a station is on the wall, it is recommended to take a so called ```zeroshot```. A ```zeroshot``` is a shot without a distance but with normal direction to the wall. ```zeroshots``` have identical ```From station``` and ```To station``` identifiers in the CSV.
 
 ## Contact
 PMLS is a group endeavor of a few cavers from Hungary. You can [contact us](mailto:pmls-hu@cave3d.org) if you have questions or comments.
