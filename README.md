@@ -11,19 +11,22 @@
 - git
 
 ### Obtain the packages using git:
-Cd to a directory in which the PMLS system will be installed. A new directory called "pmls4matlab" will be created in which pmls4matlab will be set up.
+Change to a directory in which the PMLS system will be installed. A new directory called "pmls4matlab" will be created in which pmls4matlab will be set up.
 
-#### Download pmls4matlab:
+#### 1. Download pmls4matlab:
 ```
 git clone https://github.com/poormanslaserscanner/pmls4matlab.git
 cd pmls4matlab
 ```
 
-#### 3rd party libraries are incorporated as submodules, you can obtain:
+#### 2. Dependencies are incorporated as submodules, you can obtain them by:
 ```
 git submodule update --init
 cd ..
 ```
+#### 3. Download precompiled binaries from releases.
+#### 4. Copy the bin directory into pmls4matlab
+
 
 ### Setup
 
