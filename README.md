@@ -1,4 +1,4 @@
-﻿# pmls4matlab - Surface reconstruction for 3D cave surveying
+# pmls4matlab - Surface reconstruction for 3D cave surveying
 ![](teaser.gif)
 
 **pmls4matlab** is the proof of concept implementation of the applied surface reconstruction technique in our novel 3D cave surveying method: [Poor Man's Laserscanner (PMLS): a simple method of 3D cave surveying](http://cave3d.org/cmssimple). Our method is based on sparse measurements performed with Beat Heeb's  [DistoX](https://paperless.bheeb.ch) or similar laser distance meter equipped with compass and inclinometer. We can capture very few samples with the Disto compared to point clouds resulting from Terrestrial Laser Scanners (TLS) or [GeoSlam’s ZEB1/ZEB REVO](https://geoslam.com/) handheld laser scanners. In addition, the distribution of the sampled points can be extremely uneven, while caves usually have layouts with lots of features at all scales. To overcome these difficulties a robust and reliable surface reconstruction algorithm had to be developed. The proposed sofware, **pmls4matlab** interpolates the measured points with a watertight surface, which is free of self-intersections. We have found that even complicated geometric layouts can be recovered with good detail from as few as 50 to 150 splay shots per station. More technical details can be found in our [paper](https://poormanslaserscanner.github.io/pmls4blender/paper.pdf). 
@@ -36,7 +36,7 @@ setup
 ```
 ## Usage
 ### Preparing input data
-PMLS uses an input file structure based on CSV files. The input structure is to have a main CSV file that references the CSV files of different surveys called survey CSV files. For each survey CSV file a unique survey Id is defined and magnetic declination may be set. The format of these files follow the table structure of the TopoDroid sqlite database (namely the columns of the "shots" table). In the CSV files the '|' character has to be used as delimeter.
+PMLS uses an input file structure based on CSV files. The input structure is to have a main CSV file that references the CSV files of different surveys called survey CSV files. For each survey CSV file a unique survey Id is defined and magnetic declination may be set. The format of these files follow the table structure of the TopoDroid sqlite database (namely the columns of the "shots" table). In the CSV files the '|' character has to be used as delimeter. For some examples see the testdata directory.
 #### The main CSV file
 The first line is assumed to be a header and will be skipped. The main CSV file has the following fields:
 1. Id: Unique identifier of the survey. If the id is `xyz` then the name of the corresponding survey CSV file is `xyz.csv` 
@@ -47,7 +47,15 @@ The first line is assumed to be a header and will be skipped. The main CSV file 
 1. Declination: Magnetic declination. Azimuth readings will be corrected with this value.
 1. Init_station: Always zero.
 #### The survey CSV files
-
+In contrast to the main CSV survey CSV feles do not have a header. The following fields required:
+1. Survey id: The id of the survey. (The name of the CSV file without ```.csv```.)
+1. Shot id: Unique numeric identifier of the given shot.
+1. From station: Identifier of the station the shot was taken from. Each station must have a unique case sensitive name.
+1. To station: For splay shots it is left empty. For leg shots it is the identifier of the end point of the shot.  
+1. Distance reading in meters.
+1. Azimuth in degrees: Norts is zero, east is 90 degrees.
+1. Elevation in degrees between -90 and +90.
+It is always assumed that there is a station with identifier ```0``` and cartesian coordinates ```[0,0,0]```. The shots whith both From and To station identifiers compose the network of the stations. This network cannot be disconnected and so the cartesian coordinates of all the stations can be derived from the shots and from the location of station ```0```. There can be multiple shots with the same from and two stations. In that case we will take the average of the readings. 
 
 ## Contact
 PMLS is a group endeavor of a few cavers from Hungary. You can [contact us](mailto:pmls-hu@cave3d.org) if you have questions or comments.
