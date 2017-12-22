@@ -27,10 +27,14 @@ cd ..
 #### 3. Download precompiled binaries from releases.
 #### 4. Copy the bin directory into pmls4matlab
 
-
 ### Setup
-
-
+1. Set PMLS_INSTALL_DIR environmental variable to the pmls installation folder, eg.: "d:\pmls4matlab"
+1. Start Matlab
+1. Setup the Matlab path by typing in the Matlab command line: 
+```
+cd(getenv('PMLS_INSTALL_DIR'))
+setup
+```
 ## Contact
 PMLS is a group endeavor of a few cavers from Hungary. You can [contact us](mailto:pmls-hu@cave3d.org) if you have questions or comments.
 If you're using our work, please drop us a note to justify spending time maintaining this.
